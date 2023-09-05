@@ -17,4 +17,8 @@ public class GestorCursosServices {
     public List<Alumno> buscarTodosAlumnos() {
         return repoAlumno.buscarTodos();
     }
+
+    public Alumno consultar(String nombre) {
+        return repoAlumno.consultar(nombre);
+    }
 }

@@ -6,18 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Lista de alumnos</title>
 </head>
-<body>
-<ul th:each="alumno : ${listaalumnos}">
-    <li th:text="${alumno.nombre}"></li>
-    <li th:text="${alumno.edad}"></li>
+<body>${listaalumnos}
+<ul>
+<c:forEach items="${listaalumnos}" var="alumno">
+    <li><a href="consultar?nombre=${alumno.nombre}" title="Ver detalle del alumno">${alumno.nombre}</a> </li>
+</c:forEach>
 </ul>
-
-<p>
-    ${alumno_test}
-</p>
+<a href="formulario">Registrar</a>
 </body>
 </html>

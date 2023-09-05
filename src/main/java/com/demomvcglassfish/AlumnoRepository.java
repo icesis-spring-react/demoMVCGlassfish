@@ -21,4 +21,13 @@ public class AlumnoRepository {
     public void insertar(Alumno alumno) {
         alumnos.add(alumno);
     }
+
+    public Alumno consultar(String nombre){
+        for (Alumno a : alumnos) {
+            if (nombre.equals(a.getNombre())) {
+                return a;
+            }
+        }
+        return null;
+    }
 }
