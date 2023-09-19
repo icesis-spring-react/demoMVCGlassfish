@@ -14,7 +14,8 @@
 <body>${listaalumnos}
 <ul>
 <c:forEach items="${listaalumnos}" var="alumno">
-    <li><a href="consultar?nombre=${alumno.nombre}" title="Ver detalle del alumno">${alumno.nombre}</a> </li>
+    <li><a href="consultar?nombre=${alumno.nombre}" title="Ver detalle del alumno">${alumno.nombre} -
+    ${alumno.nota.valor} - ${alumno.nota.desc}</a> </li>
 </c:forEach>
 </ul>
 <a href="formulario">Registrar</a>

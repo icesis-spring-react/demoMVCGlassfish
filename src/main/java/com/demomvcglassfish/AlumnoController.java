@@ -11,12 +11,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class AlumnoController {
 
     GestorCursosServices servicio;
+
+
+    private List<Nota> listaNotas = new ArrayList<>();
+
+    public AlumnoController() {
+        super();
+        listaNotas.add(new Nota(1, "Malo"));
+        listaNotas.add(new Nota(3, "Regular"));
+        listaNotas.add(new Nota(4, "Bueno"));
+        listaNotas.add(new Nota(5, "Excelente"));
+    }
 
     @RequestMapping("/listaalumnos")
     public String listaAlumnos(Model modelo) {
@@ -45,6 +57,7 @@ public class AlumnoController {
         Alumno alumno = new Alumno();
 
         modelo.addAttribute("alumnoFrm", alumno);
+        modelo.addAttribute("posibles_notas", listaNotas);
         return "formulario";
     }
 
@@ -54,6 +67,10 @@ public class AlumnoController {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         servicio = (GestorCursosServices) ctx.getBean("servicio");
 
+        /*
+        Nota n = listaNotas.stream().filter(nota -> nota.getValor() == alumno.getNota().getValor()).findFirst().orElse(null);
+        alumno.setNota(n);
+        */
         servicio.insertarAlumno(alumno);
 
         return  new ModelAndView("redirect:/listaalumnos");

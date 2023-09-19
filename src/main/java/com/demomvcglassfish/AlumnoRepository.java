@@ -9,9 +9,9 @@ import java.util.List;
 public class AlumnoRepository {
     private static List<Alumno> alumnos= new ArrayList<Alumno>();
     static {
-        alumnos.add(new Alumno("pedro",20));
-        alumnos.add(new Alumno("angel",30));
-        alumnos.add(new Alumno("ana",50));
+        alumnos.add(new Alumno("pedro",20, new Nota(3, "hoy")));
+        alumnos.add(new Alumno("angel",30, new Nota(3, "hoy")));
+        alumnos.add(new Alumno("ana",50, new Nota(3, "hoy")));
     }
 
     public List<Alumno> buscarTodos() {

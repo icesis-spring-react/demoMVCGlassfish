@@ -7,12 +7,23 @@ public class Alumno {
     private String nombre;
     private int edad;
 
+    private Nota nota;
+
     public Alumno() {
     }
 
-    public Alumno(String nombre, int edad) {
+    public Nota getNota() {
+        return nota;
+    }
+
+    public void setNota(Nota nota) {
+        this.nota = nota;
+    }
+
+    public Alumno(String nombre, int edad, Nota nota) {
         this.nombre = nombre;
         this.edad = edad;
+        this.nota = nota;
     }
 
     public String getNombre() {
