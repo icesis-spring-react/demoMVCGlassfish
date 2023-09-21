@@ -19,5 +19,6 @@
 </c:forEach>
 </ul>
 <a href="formulario">Registrar</a>
+<a href="salir">Salir</a>
 </body>
 </html>

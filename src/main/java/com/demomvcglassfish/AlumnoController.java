@@ -1,5 +1,6 @@
 package com.demomvcglassfish;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -31,8 +32,11 @@ public class AlumnoController {
     }
 
     @RequestMapping("/listaalumnos")
-    public String listaAlumnos(Model modelo) {
+    public String listaAlumnos(Model modelo,  HttpSession session) {
 
+        if (session.getAttribute("user") == null) {
+            return  "redirect:/login";
+        }
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         servicio = (GestorCursosServices) ctx.getBean("servicio");
 
@@ -62,7 +66,12 @@ public class AlumnoController {
     }
 
     @RequestMapping(value="/registrar", method= RequestMethod.POST)
-    public ModelAndView registrar(@ModelAttribute("alumnoFrm")Alumno alumno, Model modelo) {
+    public ModelAndView registrar(@ModelAttribute("alumnoFrm")Alumno alumno,  HttpSession session) {
+
+        if (session.getAttribute("user") == null) {
+            return  new ModelAndView("redirect:/login");
+        }
+
 
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         servicio = (GestorCursosServices) ctx.getBean("servicio");
